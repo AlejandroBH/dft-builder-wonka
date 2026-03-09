@@ -17,8 +17,11 @@ export function exportCanvasAsPdf(
     // Hide grid before export
     if (gridGroup) {
         gridGroup.visible = false;
-        canvas.renderAll();
     }
+
+    // Set background to transparent for export
+    const originalBg = canvas.backgroundColor;
+    canvas.backgroundColor = 'transparent';
 
     // Deselect all objects
     canvas.discardActiveObject();
@@ -30,6 +33,9 @@ export function exportCanvasAsPdf(
         multiplier: DPI_MULTIPLIER,
         enableRetinaScaling: false,
     });
+
+    // Restore background color
+    canvas.backgroundColor = originalBg;
 
     // Create PDF with exact sheet dimensions in mm (jsPDF uses mm)
     const widthMm = sheetConfig.widthCm * 10;

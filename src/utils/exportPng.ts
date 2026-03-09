@@ -14,8 +14,11 @@ export function exportCanvasAsPng(
     // Hide grid before export
     if (gridGroup) {
         gridGroup.visible = false;
-        canvas.renderAll();
     }
+
+    // Set background to transparent for export
+    const originalBg = canvas.backgroundColor;
+    canvas.backgroundColor = 'transparent';
 
     // Deselect all objects
     canvas.discardActiveObject();
@@ -26,6 +29,9 @@ export function exportCanvasAsPng(
         multiplier: DPI_MULTIPLIER,
         enableRetinaScaling: false,
     });
+
+    // Restore background color
+    canvas.backgroundColor = originalBg;
 
     downloadDataUrl(dataUrl, filename);
 
