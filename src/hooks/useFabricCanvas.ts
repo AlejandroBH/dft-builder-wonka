@@ -66,7 +66,7 @@ export function useFabricCanvas(canvasElRef: React.RefObject<HTMLCanvasElement |
         const canvas = new fabric.Canvas(el, {
             width: widthPx,
             height: heightPx,
-            backgroundColor: '#ffffff',
+            backgroundColor: 'transparent',
             selection: true,
             preserveObjectStacking: true,
         });

@@ -49,7 +49,7 @@ export const GRID_LINE_COLOR = 'rgba(200, 200, 200, 0.5)';
 export const GRID_MAJOR_LINE_COLOR = 'rgba(150, 150, 150, 0.7)';
 
 /** Canvas background color */
-export const CANVAS_BG_COLOR = '#ffffff';
+export const CANVAS_BG_COLOR = 'transparent';
 
 /** Maximum image dimension before resize (in pixels) */
 export const MAX_IMAGE_DIMENSION = 4000;
