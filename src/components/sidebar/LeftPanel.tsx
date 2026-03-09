@@ -100,7 +100,7 @@ export default function LeftPanel({ canvasActions }: LeftPanelProps) {
     ];
 
     return (
-        <aside className="w-16 bg-gray-900 border-r border-gray-700 flex flex-col items-center py-3 gap-1 shrink-0">
+        <aside className="w-full md:w-16 bg-gray-900 flex flex-row md:flex-col items-center justify-around md:justify-start py-2 md:py-3 px-2 md:px-0 gap-1 md:gap-2 shrink-0 overflow-x-auto hide-scrollbar">
             <input
                 ref={fileInputRef}
                 type="file"
@@ -117,7 +117,7 @@ export default function LeftPanel({ canvasActions }: LeftPanelProps) {
                     disabled={!tool.enabled}
                     title={tool.label}
                     className={`
-            w-12 h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 transition-all duration-150
+            min-w-[48px] h-12 rounded-lg flex flex-col items-center justify-center gap-0.5 transition-all duration-150 shrink-0
             ${!tool.enabled
                             ? 'text-gray-600 cursor-not-allowed'
                             : tool.accent

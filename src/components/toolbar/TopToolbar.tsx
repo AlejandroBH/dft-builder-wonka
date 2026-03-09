@@ -30,9 +30,9 @@ export default function TopToolbar({ canvasActions }: TopToolbarProps) {
     };
 
     return (
-        <header className="h-14 bg-gray-900 border-b border-gray-700 flex items-center px-4 gap-4 shrink-0">
+        <header className="h-14 bg-gray-900 border-b border-gray-700 flex items-center px-4 gap-4 shrink-0 overflow-x-auto hide-scrollbar whitespace-nowrap">
             {/* Logo */}
-            <div className="flex items-center gap-2 mr-4">
+            <div className="flex items-center gap-2 mr-2 md:mr-4 shrink-0">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
                     <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
@@ -94,8 +94,8 @@ export default function TopToolbar({ canvasActions }: TopToolbarProps) {
                 <button
                     onClick={toggleGrid}
                     className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded text-sm transition-colors ${settings.gridVisible
-                            ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/40'
-                            : 'text-gray-400 hover:bg-gray-700 border border-transparent'
+                        ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/40'
+                        : 'text-gray-400 hover:bg-gray-700 border border-transparent'
                         }`}
                     title="Toggle Grid"
                 >
@@ -107,8 +107,8 @@ export default function TopToolbar({ canvasActions }: TopToolbarProps) {
                 <button
                     onClick={toggleSnap}
                     className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded text-sm transition-colors ${settings.snapToGrid
-                            ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/40'
-                            : 'text-gray-400 hover:bg-gray-700 border border-transparent'
+                        ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/40'
+                        : 'text-gray-400 hover:bg-gray-700 border border-transparent'
                         }`}
                     title="Toggle Snap to Grid"
                 >

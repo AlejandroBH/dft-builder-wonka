@@ -19,18 +19,22 @@ export default function EditorLayout() {
             <TopToolbar canvasActions={canvasActions} />
 
             {/* Main content area */}
-            <div className="flex flex-1 overflow-hidden">
-                {/* Left Panel */}
-                <div className="flex flex-col">
+            <div className="flex flex-col-reverse md:flex-row flex-1 overflow-hidden relative">
+                {/* Left Panel / Mobile Bottom Bar */}
+                <div className="flex flex-col md:w-auto shrink-0 bg-gray-900 z-10 md:border-r border-t md:border-t-0 border-gray-700">
                     <LeftPanel canvasActions={canvasActions} />
-                    <AssetLibrary canvasActions={canvasActions} />
+                    <div className="hidden md:block">
+                        <AssetLibrary canvasActions={canvasActions} />
+                    </div>
                 </div>
 
                 {/* Canvas Area */}
                 <CanvasEditor onActionsReady={handleActionsReady} />
 
-                {/* Right Panel */}
-                <RightPanel />
+                {/* Right Panel (Hidden on small screens) */}
+                <div className="hidden lg:flex">
+                    <RightPanel />
+                </div>
             </div>
         </div>
     );
