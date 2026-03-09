@@ -304,5 +304,53 @@ export function useFabricCanvas(canvasElRef: React.RefObject<HTMLCanvasElement |
         getGridGroup: () => gridGroupRef.current,
     };
 
+    // Keyboard Shortcuts
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            // No intervenir si el foco está en un campo de texto
+            if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+            const canvas = fabricCanvasRef.current;
+            if (!canvas || !canvas.getActiveObject()) return;
+
+            if (e.key === 'Delete' || e.key === 'Backspace') {
+                e.preventDefault();
+                deleteSelected();
+            } else if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+                e.preventDefault();
+                duplicateSelected();
+            } else if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                e.preventDefault();
+                const activeObject = canvas.getActiveObject();
+                if (!activeObject) return;
+
+                // Si está bloqueado, no mover
+                if (activeObject.lockMovementX || activeObject.lockMovementY) return;
+
+                const step = e.shiftKey ? 10 : 1;
+                activeObject.set({
+                    left: (activeObject.left ?? 0) + (e.key === 'ArrowLeft' ? -step : e.key === 'ArrowRight' ? step : 0),
+                    top: (activeObject.top ?? 0) + (e.key === 'ArrowUp' ? -step : e.key === 'ArrowDown' ? step : 0),
+                });
+
+                // Snap si está activado
+                if (useEditorStore.getState().settings.snapToGrid) {
+                    const grid = useEditorStore.getState().settings.gridSizeCm * useEditorStore.getState().sheetConfig.pixelScale;
+                    activeObject.set({
+                        left: Math.round((activeObject.left ?? 0) / grid) * grid,
+                        top: Math.round((activeObject.top ?? 0) / grid) * grid,
+                    });
+                }
+
+                activeObject.setCoords();
+                canvas.renderAll();
+                syncSelection();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [deleteSelected, duplicateSelected, syncSelection]);
+
     return actions;
 }
