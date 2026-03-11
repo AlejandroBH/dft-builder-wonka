@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@theme {
+  /* Vibrant Purple from Logo */
+  --color-indigo-300: #c48df5;
+  --color-indigo-400: #b26bf0;
+  --color-indigo-500: #9e51ff; /* Core logo color */
+  --color-indigo-600: #8c3ceb;
+  --color-indigo-900: #3b116e;
+
+  /* Bright Neon Yellow from Logo for accents (mapping to emerald for existing successful states) */
+  --color-emerald-400: #ffff66;
+  --color-emerald-500: #ffff00;
+  --color-emerald-600: #cccc00;
+  --color-emerald-700: #999900;
+  --color-emerald-900: #333300;
+}
+
 /* Reset and base styles */
 *,
 *::before,

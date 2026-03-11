@@ -3,6 +3,7 @@ import { exportCanvasAsPng } from '../../utils/exportPng';
 import { exportCanvasAsPdf } from '../../utils/exportPdf';
 import { SHEET_WIDTHS, SHEET_HEIGHTS } from '../../constants';
 import type { FabricCanvasActions } from '../../hooks/useFabricCanvas';
+import logoUrl from '../../assets/logo.png';
 
 interface TopToolbarProps {
     canvasActions: FabricCanvasActions | null;
@@ -32,13 +33,9 @@ export default function TopToolbar({ canvasActions }: TopToolbarProps) {
     return (
         <header className="h-14 bg-gray-900 border-b border-gray-700 flex items-center px-4 gap-4 shrink-0 overflow-x-auto hide-scrollbar whitespace-nowrap">
             {/* Logo */}
-            <div className="flex items-center gap-2 mr-2 md:mr-4 shrink-0">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                    </svg>
-                </div>
-                <h1 className="text-white font-bold text-lg tracking-tight">DTF Builder</h1>
+            <div className="flex items-center gap-3 mr-2 md:mr-4 shrink-0">
+                <img src={logoUrl} alt="DTF Builder Logo" className="h-9 w-auto object-contain drop-shadow-md" />
+                <h1 className="text-white font-bold text-lg tracking-tight hidden sm:block">DTF Builder</h1>
             </div>
 
             {/* Divider */}
@@ -126,7 +123,7 @@ export default function TopToolbar({ canvasActions }: TopToolbarProps) {
             <div className="flex items-center gap-2">
                 <button
                     onClick={handleExportPng}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-sm font-medium transition-colors shadow-sm"
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-gray-900 rounded text-sm font-bold transition-colors shadow-sm"
                 >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -135,7 +132,7 @@ export default function TopToolbar({ canvasActions }: TopToolbarProps) {
                 </button>
                 <button
                     onClick={handleExportPdf}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded text-sm font-medium transition-colors shadow-sm"
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded text-sm font-bold transition-colors shadow-sm"
                 >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
