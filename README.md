@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# DTF Gang Sheet Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 **DTF Gang Sheet Builder** es una aplicación web avanzada que facilita la creación y composición de "gang sheets" (hojas de impresión múltiples) para estampados DTF (Direct to Film). 
 
-Currently, two official plugins are available:
+Esta herramienta permite a los diseñadores y clientes subir sus propios diseños en PNG, organizarlos libremente en un lienzo interactivo (canvas), ajustar sus tamaños y opciones, para finalmente exportar la composición completa como un archivo PNG o PDF de alta resolución listo para enviarse a los equipos de impresión.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Características Principales
 
-## React Compiler
+- **Editor Visual en Canvas:** Área de trabajo interactiva donde puedes seleccionar, arrastrar, redimensionar y rotar elementos de forma fluida.
+- **Gestión de Recursos:** Sube múltiples imágenes PNG manteniendo sus transparencias originales.
+- **Panel de Propiedades:** Control granular y numérico para cada diseño seleccionado, permitiendo ajustar la posición (X, Y), escala y rotación de forma precisa.
+- **Exportación de Calidad:** Genera el diseño final agrupado (Gang Sheet) en formatos estandarizados de la industria gráfica (PDF y PNG).
+- **Interfaz Moderna:** Interfaz de usuario intuitiva compuesta por una barra de herramientas, un panel lateral de imágenes y un panel lateral de propiedades.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+Este proyecto ha sido desarrollado utilizando un stack frontend moderno y optimizado:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **[React 19](https://react.dev/):** Biblioteca estrella para la construcción asíncrona y basada en componentes de la interfaz de usuario.
+- **[TypeScript](https://www.typescriptlang.org/):** Tipado estricto que asegura la robustez del código y previene errores en tiempo de desarrollo.
+- **[Vite](https://vitejs.dev/):** Entorno de desarrollo ultra-rápido y empaquetador (bundler) optimizado.
+- **[Tailwind CSS v4](https://tailwindcss.com/):** Framework de CSS utilitario para dar estilos de forma ágil, responsiva y altamente personalizable.
+- **[Fabric.js v7](http://fabricjs.com/):** Librería líder de Canvas HTML5 para la manipulación y renderizado de objetos interactivos.
+- **[jsPDF](https://github.com/parallax/jsPDF):** Solución para la generación de archivos PDF directamente desde el lado del cliente (Navegador).
+- **[Zustand v5](https://github.com/pmndrs/zustand):** Herramienta minimalista y potente para la gestión del estado global de la aplicación.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📦 Instalación y Uso Local
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Para ejecutar este proyecto en tu entorno local, sigue las siguientes instrucciones:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Clona el proyecto o navega al directorio:**
+   ```bash
+   cd dft-builder-wonka
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Instala las dependencias necesarias:**
+   Requiere Node.js.
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. **Inicia el entorno de desarrollo:**
+   ```bash
+   npm run dev
+   ```
+   La aplicación normalmente estará accesible en `http://localhost:5173`.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. **Compilar para producción:**
+   ```bash
+   npm run build
+   ```
+   Los archivos listos para producción se generarán en la carpeta `dist`.
+
+## 📂 Arquitectura
+
+El diseño interno sigue un enfoque altamente modular:
+- Separación clara entre componentes de interfaz (React) y la manipulación intensiva del canvas (Fabric.js).
+- Estados globales compartidos con Zustand para evitar *prop drilling* en árboles de componentes profundos.
+- Utilización de Tailwind para una definición de estilos sistemática sin hojas de CSS dispersas.
